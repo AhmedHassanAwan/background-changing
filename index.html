@@ -1,20 +1,185 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>VIP Color Flipper | Premium</title>
+    <style>
+        /* :root {
+            --primary: #121212;
+            --secondary: #f5f5f7;
+            --accent: #ff2d55;
+        } */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow: hidden;
+        }
+
+        .glass-card {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .color-display {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            letter-spacing: 1px;
+        }
+
+        .btn-vip {
+            background: linear-gradient(45deg, #ff2d55, #ff8a00);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(255, 45, 85, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-vip:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 45, 85, 0.4);
+        }
+
+        .btn-vip:active {
+            transform: translateY(1px);
+        }
+
+        .btn-vip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            z-index: 1;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .brand {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
+    <div class="glass-card">
+        <h1>VIP COLOR FLIPPER</h1>
+        <p>Click the button to generate a luxurious color</p>
+        
+        <div class="color-display" id="colorCode">RGB(255, 255, 255)</div>
+        
+        <button class="btn-vip" id="colorBtn">Generate Color</button>
+    </div>
 
+    <div class="particles" id="particles"></div>
 
-    <button id="click" onclick="color()">Click Me</button>
-    
+    <div class="brand">VIP EDITION</div>
 
+    <script>
+        const btn = document.getElementById("colorBtn");
+        const colorCode = document.getElementById("colorCode");
+        const particles = document.getElementById("particles");
 
+        btn.addEventListener("click", () => {
+         
+            let a = Math.ceil(Math.random() * 255);
+            let b = Math.ceil(Math.random() * 255);
+            let c = Math.ceil(Math.random() * 255);
+            
+            const rgbColor = `rgb(${a}, ${b}, ${c})`;
+            document.body.style.backgroundColor = rgbColor;
+            colorCode.textContent = `RGB(${a}, ${b}, ${c})`;
 
+            
+        });
 
-    <script src="app.js"></script>
+   
+    </script>
 </body>
 </html>
